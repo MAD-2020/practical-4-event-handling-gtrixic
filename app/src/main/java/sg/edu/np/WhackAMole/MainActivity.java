@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         buttonB = (Button) findViewById(R.id.buttonB);
         buttonC = (Button) findViewById(R.id.buttonC);
         Score = (TextView) findViewById(R.id.Score);
-        Score.setText(score);
+        Score.setText("" + score);
     }
 
     public void setNewMole() {
@@ -60,21 +60,21 @@ public class MainActivity extends AppCompatActivity {
         Button b = (Button) v;
         if (Mole(b) == true) {
             score++;
-            Score.setText(score);
+            Score.setText("" + score);
             text(b);
             doCheck(score);
             Log.v(TAG, "Hit, score added!");
         } else {
             if (score > 0) {
                 score--;
-                Score.setText(score);
+                Score.setText("" + score);
                 text(b);
                 Log.v(TAG, "Missed, score deducted!");
             }
             else
             {
                 score = 0;
-                Score.setText(score);
+                Score.setText("" + score);
                 text(b);
                 Log.v(TAG, "Missed, score deducted!");
             }

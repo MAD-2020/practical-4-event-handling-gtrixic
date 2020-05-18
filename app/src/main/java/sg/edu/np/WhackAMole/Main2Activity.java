@@ -20,39 +20,38 @@ public class Main2Activity extends AppCompatActivity {
     int advancedScore = 0;
     private TextView AdvancedScore;
     ArrayList<Button> buttonList = new ArrayList<>();
-    final Toast[] checktoast = {null};
+    final Toast[] checkToast = {null};
 
 
     private void readyTimer(){
         myReadyTimer = new CountDownTimer(10000,1000) {
-            @Override
-            public void onTick(long l) {
-                Log.v(TAG, "Ready Countdown!" + l/1000);
-                if (checktoast[0] != null){
-                    checktoast[0].cancel();
+
+            public void onTick(long millisUntilFinished) {
+                Log.v(TAG, "Ready Countdown!" + millisUntilFinished/1000);
+                if (checkToast[0] != null){
+                    checkToast[0].cancel();
                 }
-                checktoast[0] = Toast.makeText(getApplicationContext(), "Get Ready In " + l/1000 + " seconds.", Toast.LENGTH_SHORT);
-                checktoast[0].show();
+                checkToast[0] = Toast.makeText(getApplicationContext(), "Get Ready In " + millisUntilFinished/1000 + " seconds.", Toast.LENGTH_SHORT);
+                checkToast[0].show();
             }
 
-            @Override
             public void onFinish() {
                 Log.v(TAG, "Ready countdown complete!");
-                if (checktoast[0] != null)
+                if (checkToast[0] != null)
                 {
-                    checktoast[0].cancel();
+                    checkToast[0].cancel();
                 }
-                checktoast[0] = Toast.makeText(getApplicationContext(), "GO!", Toast.LENGTH_SHORT);
-                checktoast[0].show();
+                checkToast[0] = Toast.makeText(getApplicationContext(), "GO!", Toast.LENGTH_SHORT);
+                checkToast[0].show();
                 placeMoleTimer();
             }
         };
         myReadyTimer.start();
-
     }
+
     private void placeMoleTimer(){
         myMoleTimer = new CountDownTimer(1000, 1000) {
-            @Override
+
             public void onTick(long l) {
                 Log.v(TAG, "New Mole Location!");
                 setNewMole();
@@ -76,7 +75,7 @@ public class Main2Activity extends AppCompatActivity {
 
         AdvancedScore = findViewById(R.id.adscore);
         advancedScore = getIntent().getIntExtra("score", 10);
-        AdvancedScore.setText(advancedScore);
+        AdvancedScore.setText("" + advancedScore);
 
         Log.v(TAG, "Current User Score: " + String.valueOf(advancedScore));
 
@@ -110,18 +109,18 @@ public class Main2Activity extends AppCompatActivity {
         Button b = (Button) v;
         if (Mole(b)) {
             advancedScore++;
-            AdvancedScore.setText(advancedScore);
+            AdvancedScore.setText("" + advancedScore);
             Log.v(TAG, "Hit, score added!");
         } else {
             if (advancedScore > 0) {
                 advancedScore--;
-                AdvancedScore.setText(advancedScore);
+                AdvancedScore.setText("" + advancedScore);
                 Log.v(TAG, "Missed, score deducted!");
             }
             else
             {
                 advancedScore = 0;
-                AdvancedScore.setText(advancedScore);
+                AdvancedScore.setText("" + advancedScore);
                 Log.v(TAG, "Missed, score deducted!");
             }
         }
